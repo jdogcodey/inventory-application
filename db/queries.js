@@ -50,6 +50,24 @@ async function getAllAuthors() {
   return rows;
 }
 
+async function getAllBooksByAuthor(firstName, lastName) {
+  const { rows } = await pool.query(
+    `SELECT
+        b.id AS book_id,
+        b.name AS book_name,
+        b.price AS book_price,
+        b.no_of_pages AS no_of_pages,
+        a.first_name || ' ' || a.last_name AS author_name,
+        g.name AS genre_name
+        FROM books b
+        INNER JOIN authors a ON b.author_id = a.id
+        INNER JOIN genres g ON b.genre_id = g.id
+        WHERE a.first_name ILIKE $1 AND a.last_name ILIKE $2`,
+    [`%${firstName}%`, `%${lastName}%`]
+  );
+  return rows;
+}
+
 async function getBookById(id) {
   const { rows } = await pool.query("SELECT * FROM  books WHERE id = ($1)", [
     id,

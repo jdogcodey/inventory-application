@@ -75,7 +75,7 @@ async function getBookById(id) {
   return rows;
 }
 
-async function searchBar(searchTerm) {
+async function searchBarDB(searchTerm) {
   const { rows } = await pool.query(
     `
         (

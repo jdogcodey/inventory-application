@@ -170,7 +170,17 @@ async function removeAuthorById(id) {
 }
 
 async function findBookIdByTitle(bookTitle) {
-  const { rows } = await pool.query(`SELECT id FROM books WHERE name = $1`, [
-    `%${bookTitle}%`,
-  ]);
+  const { rows } = await pool.query(
+    `SELECT id FROM books WHERE name ILIKE $1`,
+    [`%${bookTitle}%`]
+  );
+  return rows;
+}
+
+async function findGenreId(genre) {
+  const { rows } = await pool.query(
+    `SELECT id FROM genres WHERE name ILIKE $1`,
+    [`%${genre}%`]
+  );
+  return rows;
 }

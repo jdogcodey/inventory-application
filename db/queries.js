@@ -55,3 +55,11 @@ LIMIT 10 OFFSET 0;
   );
   return rows;
 }
+
+async function addBook(title, genreId, price, noOfPages, authorId) {
+  await pool.query(
+    `INSERT INTO books (name, genre_id, price, no_of_pages, author_id)
+        VALUES ($1, $2, $3, $4, $5);`,
+    [title, genreId, price, noOfPages, authorId]
+  );
+}

@@ -156,3 +156,11 @@ async function getGenreId(genre) {
   );
   return rows;
 }
+
+async function removeBookById(id) {
+  const { rows } = await pool.query(
+    `
+        DELETE FROM books WHERE id = $1`,
+    [id]
+  );
+}

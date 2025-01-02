@@ -79,3 +79,17 @@ async function addGenre(genre) {
     [genre]
   );
 }
+
+async function getBookId(bookName) {
+  const { rows } = await pool.query(
+    `SELECT id FROM books WHERE name ILIKE $1`,
+    [`%${bookName}%`]
+  );
+}
+
+async function getAuthorId(firstName, lastName) {
+  const { rows } = await pool.query(
+    `SELECT id FROM authors WHERE first_name ILIKE $1 AND last_name ILIKE $2`,
+    [`%${firstName}%`, `%${lastName}%`]
+  );
+}

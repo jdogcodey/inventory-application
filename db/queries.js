@@ -21,3 +21,37 @@ async function getBookById(id) {
   ]);
   return rows;
 }
+
+async function searchBar(searchTerm) {
+  const { rows } = await pool.query(
+    `
+        (
+    SELECT 
+        'book' AS type, 
+        b.name AS match_name
+    FROM books b
+    WHERE b.name ILIKE '%' || $1 || '%'
+)
+UNION ALL
+(
+    SELECT 
+        'author' AS type, 
+        a.first_name || ' ' || a.last_name AS match_name
+    FROM authors a
+    WHERE a.first_name ILIKE '%' || $1 || '%' 
+       OR a.last_name ILIKE '%' || $1 || '%'
+)
+UNION ALL
+(
+    SELECT 
+        'genre' AS type, 
+        g.name AS match_name
+    FROM genres g
+    WHERE g.name ILIKE '%' || $1 || '%'
+)
+LIMIT 10 OFFSET 0;
+`,
+    [searchTerm]
+  );
+  return rows;
+}

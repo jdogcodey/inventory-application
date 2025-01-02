@@ -12,14 +12,14 @@
         <th>No. Of Pages</th>
         <th>Author</th>
         <th>Genre</th>
-    <% messages.forEach((book) => {
-        const title = book.book_name;
-        const price = book.book_price;
-        const noOfPages = book.no_of_pages;
-        const authorName = book.author_name;
-        const genre = book.genre_name;
+    <% allBooks.forEach((book) => { %>
+        <%const title = book.book_name;%>
+        <%const price = book.book_price;%>
+        <%const noOfPages = book.no_of_pages;%>
+        <%const authorName = book.author_name;%>
+        <%const genre = book.genre_name;%>
             <%- include('./partials/book', { title: title, price: price, noOfPages: noOfPages, authorName: authorName, genre: genre}) %>
-    }) %>
+    <%}) %>
     </table>
     
 </body>

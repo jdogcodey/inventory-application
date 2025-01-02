@@ -12,7 +12,7 @@ async function getAllBooksWithGenreAuthor() {
         b.name AS book_name,
         b.price AS book_price,
         b.no_of_pages AS no_of_pages,
-        a.first_name || ' ' a.last_name AS author_name,
+        a.first_name || ' ' || a.last_name AS author_name,
         g.name AS genre_name
         FROM books b
         INNER JOIN authors a ON b.author_id = a.id
@@ -191,3 +191,5 @@ async function findAuthorIdByName(firstName, lastName) {
     [`%${firstName}%`, `%${lastName}%`]
   );
 }
+
+module.exports = { getAllBooksWithGenreAuthor };

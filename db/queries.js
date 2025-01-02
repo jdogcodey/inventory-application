@@ -5,6 +5,22 @@ async function getAllBooks() {
   return rows;
 }
 
+async function getAllBooksWithGenreAuthor() {
+  const { rows } = await pool.query(
+    `SELECT 
+        b.id AS book_id,
+        b.name AS book_name,
+        b.price AS book_price,
+        b.no_of_pages AS no_of_pages,
+        a.first_name || ' ' a.last_name AS author_name,
+        g.name AS genre_name
+        FROM books b
+        INNER JOIN authors a ON b.author_id = a.id
+        INNER JOIN genres g ON b.genre_id = g.id`
+  );
+  return rows;
+}
+
 async function getAllGenres() {
   const { rows } = await pool.query("SELECT * FROM genres;");
   return rows;

@@ -63,3 +63,19 @@ async function addBook(title, genreId, price, noOfPages, authorId) {
     [title, genreId, price, noOfPages, authorId]
   );
 }
+
+async function addAuthor(firstName, lastName) {
+  await pool.query(
+    `INSERT INTO authors (first_name, last_name)
+        VALUES ($1, $2)`,
+    [firstName, lastName]
+  );
+}
+
+async function addGenre(genre) {
+  await pool.query(
+    `INSERT INTO genres (name)
+        VALUES ($1)`,
+    [genre]
+  );
+}

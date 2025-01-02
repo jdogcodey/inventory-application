@@ -85,6 +85,7 @@ async function getBookId(bookName) {
     `SELECT id FROM books WHERE name ILIKE $1`,
     [`%${bookName}%`]
   );
+  return rows;
 }
 
 async function getAuthorId(firstName, lastName) {
@@ -92,4 +93,13 @@ async function getAuthorId(firstName, lastName) {
     `SELECT id FROM authors WHERE first_name ILIKE $1 AND last_name ILIKE $2`,
     [`%${firstName}%`, `%${lastName}%`]
   );
+  return rows;
+}
+
+async function getGenreId(genre) {
+  const { rows } = await pool.query(
+    `SELECT id FROM genres WHERE name ILIKE $1`,
+    [`%${genre}%`]
+  );
+  return rows;
 }

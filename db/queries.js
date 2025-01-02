@@ -184,3 +184,10 @@ async function findGenreId(genre) {
   );
   return rows;
 }
+
+async function findAuthorIdByName(firstName, lastName) {
+  const { rows } = await pool.query(
+    `SELECT id FROM authors WHERE first_name ILIKE $1 AND last_name ILIKE $2`,
+    [`%${firstName}%`, `%${lastName}%`]
+  );
+}

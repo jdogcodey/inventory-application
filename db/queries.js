@@ -164,3 +164,7 @@ async function removeBookById(id) {
 async function removeGenreById(id) {
   await pool.query(`DELETE FROM genres WHERE id = $1`, [id]);
 }
+
+async function removeAuthorById(id) {
+  await pool.query(`DELETE FROM authors WHERE id = $1`, [id]);
+}

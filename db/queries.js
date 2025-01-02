@@ -158,9 +158,9 @@ async function getGenreId(genre) {
 }
 
 async function removeBookById(id) {
-  const { rows } = await pool.query(
-    `
-        DELETE FROM books WHERE id = $1`,
-    [id]
-  );
+  await pool.query(`DELETE FROM books WHERE id = $1`, [id]);
+}
+
+async function removeGenreById(id) {
+  await pool.query(`DELETE FROM genres WHERE id = $1`, [id]);
 }

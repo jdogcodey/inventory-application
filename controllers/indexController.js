@@ -5,4 +5,11 @@ async function renderHomepage(req, res) {
   res.render(`../views/index`, { allBooks: allBooks });
 }
 
-module.exports = { renderHomepage };
+async function allGenres(req, res) {
+  const allGenres = await db.getAllGenres();
+  res.render("../views/genres", { allGenres: allGenres });
+}
+
+// Add controllers for the different routes
+
+module.exports = { renderHomepage, allGenres };

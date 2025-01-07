@@ -16,23 +16,10 @@
             </ul>
         </nav>
     </header>
-    <h1><%=pageTitle%></h1>
-    <table>
-        <th>Title</th>
-        <th>Price</th>
-        <th>No. Of Pages</th>
-        <th>Author</th>
-        <th>Genre</th>
-        <% allBooks.forEach((book)=> { %>
-            <%const title=book.book_name;%>
-                <%const price=book.book_price;%>
-                    <%const noOfPages=book.no_of_pages;%>
-                        <%const authorName=book.author_name;%>
-                            <%const genre=book.genre_name;%>
-                                <%- include('./partials/book', { title: title, price: price, noOfPages: noOfPages, authorName:
-                                    authorName, genre: genre}) %>
-                                    <%}) %>
-    </table>
+    <h1>Genres</h1>
+    <% allGenres.forEach((genre) => { %>
+        <a href="./genres/<%=genre.id%>"><%=genre.name%></a>
+    <% }) %>
     <footer>
         <p>Made by </p><a href="https://github.com/jdogcodey">JdogCodey</a>
         <p>following </p><a href="https://www.theodinproject.com/">The Odin Project </a><a

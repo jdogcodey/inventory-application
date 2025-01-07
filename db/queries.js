@@ -26,10 +26,9 @@ async function getAllGenres() {
   return rows;
 }
 
-async function getAllBooksByGenre(genre) {
+async function getAllBooksByGenre(genreId) {
   const { rows } = await pool.query(
     `SELECT
-        g.name AS genre_name,
         b.id AS book_id,
         b.name AS book_name,
         b.price AS book_price,
@@ -38,9 +37,9 @@ async function getAllBooksByGenre(genre) {
         FROM books b
         INNER JOIN authors a ON b.author_id = a.id
         INNER JOIN genres g ON b.genre_id = g.id
-        WHERE g.name ILIKE $1
+        WHERE g.id = $1
         `,
-    [`%${genre}%`]
+    [genreId]
   );
   return rows;
 }
@@ -185,6 +184,13 @@ async function findGenreId(genre) {
   return rows;
 }
 
+async function findGenreName(genreId) {
+  const { rows } = await pool.query(`SELECT name FROM genres WHERE id = $1`, [
+    genreId,
+  ]);
+  return rows;
+}
+
 async function findAuthorIdByName(firstName, lastName) {
   const { rows } = await pool.query(
     `SELECT id FROM authors WHERE first_name ILIKE $1 AND last_name ILIKE $2`,
@@ -192,4 +198,10 @@ async function findAuthorIdByName(firstName, lastName) {
   );
 }
 
-module.exports = { getAllBooksWithGenreAuthor, getAllGenres, getAllAuthors };
+module.exports = {
+  getAllBooksWithGenreAuthor,
+  getAllGenres,
+  getAllAuthors,
+  getAllBooksByGenre,
+  findGenreName,
+};

@@ -192,4 +192,4 @@ async function findAuthorIdByName(firstName, lastName) {
   );
 }
 
-module.exports = { getAllBooksWithGenreAuthor, getAllGenres };
+module.exports = { getAllBooksWithGenreAuthor, getAllGenres, getAllAuthors };

@@ -22,6 +22,29 @@ async function booksByGenre(req, res) {
   res.render("../views/oneGenre", { genre: genre, allBooks: allBooks });
 }
 
+async function newPage(req, res) {
+  const allGenres = await db.getAllGenres();
+  const allAuthors = await db.getAllAuthors();
+  res.render("../views/new", { allGenres: allGenres, allAuthors: allAuthors });
+}
+
+async function addBook(req, res) {
+  const title = req.body.title;
+  const genre = req.body.genre;
+  const price = req.body.price;
+  const pages = req.body.pages;
+  const author = req.body.author;
+  await db.addBookToDB(title, genre, price, pages, author);
+  res.redirect("/");
+}
+
 // Add controllers for the different routes
 
-module.exports = { renderHomepage, allGenres, allAuthors, booksByGenre };
+module.exports = {
+  renderHomepage,
+  allGenres,
+  allAuthors,
+  booksByGenre,
+  newPage,
+  addBook,
+};

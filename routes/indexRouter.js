@@ -10,6 +10,7 @@ const indexRouter = Router();
 //Add post for new author
 //Add post for new book
 
+indexRouter.post("/add-author", indexController.addAuthor);
 indexRouter.post("/add-book", indexController.addBook);
 indexRouter.get("/new", indexController.newPage);
 indexRouter.get("/genres/:genreId", indexController.booksByGenre);

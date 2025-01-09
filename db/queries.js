@@ -116,7 +116,7 @@ async function addBookToDB(title, genreId, price, noOfPages, authorId) {
   );
 }
 
-async function addAuthor(firstName, lastName) {
+async function addAuthorToDB(firstName, lastName) {
   await pool.query(
     `INSERT INTO authors (first_name, last_name)
         VALUES ($1, $2)`,
@@ -205,4 +205,5 @@ module.exports = {
   getAllBooksByGenre,
   findGenreName,
   addBookToDB,
+  addAuthorToDB,
 };

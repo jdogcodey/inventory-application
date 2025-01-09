@@ -38,6 +38,14 @@ async function addBook(req, res) {
   res.redirect("/");
 }
 
+async function addAuthor(req, res) {
+  const firstName = req.body.first;
+  const lastName = req.body.last;
+  await db.addAuthorToDB(firstName, lastName);
+  const authors = await db.getAllAuthors();
+  res.render("../views/authors", { authors: authors });
+}
+
 // Add controllers for the different routes
 
 module.exports = {
@@ -47,4 +55,5 @@ module.exports = {
   booksByGenre,
   newPage,
   addBook,
+  addAuthor,
 };

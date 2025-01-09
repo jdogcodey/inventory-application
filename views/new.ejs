@@ -12,11 +12,12 @@
             <ul>
                 <li><a href="./genres">Genres</a></li>
                 <li><a href="./authors">Authors</a></li>
-                <li><a href="./books">Books</a></li>
+                <li><a href="./index">Books</a></li>
                 <li><a href="./new">Add</a></li>
             </ul>
         </nav>
     </header>
+    <h1>Add Book:</h1>
     <form method="POST" action="/add-book">
         <ul>
             <li>
@@ -42,6 +43,19 @@
             </li>
         </ul>
     </form>
+    <h1>Add Author:</h1>
+    <form method="POST" action="/add-author">
+        <ul>
+            <li>
+                <label for="first">First Name:</label>
+                <input type="text" id="first" name="first" />
+                <label for="last">Last Name:</label>
+                <input type="text" id="last" name="last" />
+                <input type="submit" value="Add Author" />
+            </li>
+        </ul>
+    </form>
+    
     <footer>
         <p>Made by </p><a href="https://github.com/jdogcodey">JdogCodey</a>
         <p>following </p><a href="https://www.theodinproject.com/">The Odin Project </a><a

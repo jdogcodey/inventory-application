@@ -18,9 +18,24 @@
         </nav>
     </header>
     <h1>Genres</h1>
-    <% genres.forEach((genre) => { %>
-        <a href="./genres/<%=genre.id%>"><%=genre.name%></a>
-    <% }) %>
+    <table>
+        <th>Genre</th>
+        <th>Remove</th>
+        <% genres.forEach((genre)=> { %>
+            <tr>
+                <td>
+                    <a href="./genres/<%=genre.id%>">
+                <%=genre.name%>
+                    </a>
+                </td>
+                <td>
+                    <form method="POST" action="./removegenre/<%=genre.id%>">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
     <footer>
         <p>Made by </p><a href="https://github.com/jdogcodey">JdogCodey</a>
         <p>following </p><a href="https://www.theodinproject.com/">The Odin Project </a><a

@@ -43,23 +43,32 @@ async function addAuthor(req, res) {
   const firstName = req.body.first;
   const lastName = req.body.last;
   await db.addAuthorToDB(firstName, lastName);
-  const authors = await db.getAllAuthors();
-  res.render("../views/authors", { authors: authors });
+  res.redirect("/authors");
 }
 
 async function addGenre(req, res) {
   const newGenre = req.body.genre;
   await db.addGenreToDB(newGenre);
-  const genres = await db.getAllGenres();
-  res.render("../views/genres", { genres: genres });
+  res.redirect("/genres");
 }
 
 async function removeBook(req, res) {
   const id = req.params.id;
   console.log(id);
   await db.removeBookById(id);
-  const allBooks = await db.getAllBooksWithGenreAuthor();
-  res.render("../views/index", { allBooks: allBooks });
+  res.redirect("/");
+}
+
+async function removeGenre(req, res) {
+  const id = req.params.id;
+  await db.removeGenreById(id);
+  res.redirect("/genres");
+}
+
+async function removeAuthor(req, res) {
+  const id = req.params.id;
+  await db.removeAuthorById(id);
+  res.redirect("/authors");
 }
 
 // Add controllers for the different routes
@@ -74,4 +83,6 @@ module.exports = {
   addAuthor,
   addGenre,
   removeBook,
+  removeGenre,
+  removeAuthor,
 };

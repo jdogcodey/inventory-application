@@ -10,6 +10,8 @@ const indexRouter = Router();
 //Add post for new author
 //Add post for new book
 
+indexRouter.post("/removeauthor/:id", indexController.removeAuthor);
+indexRouter.post("/removegenre/:id", indexController.removeGenre);
 indexRouter.post("/removebook/:id", indexController.removeBook);
 indexRouter.post("/add-genre", indexController.addGenre);
 indexRouter.post("/add-author", indexController.addAuthor);

@@ -208,4 +208,6 @@ module.exports = {
   addAuthorToDB,
   addGenreToDB,
   removeBookById,
+  removeGenreById,
+  removeAuthorById,
 };

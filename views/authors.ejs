@@ -20,11 +20,26 @@
         </nav>
     </header>
     <h1>Authors</h1>
-    <% authors.forEach((author)=> { %>
-        <a href="./authors/<%=author.id%>">
-            <%=author.first_name%> <%=author.last_name%>
-        </a>
-        <% }) %>
+    <table>
+        <th>Author</th>
+        <th>Remove</th>
+        <% authors.forEach((author)=> { %>
+            <tr>
+                <td>
+                    <a href="./authors/<%=author.id%>">
+                        <%=author.first_name%>
+                            <%=author.last_name%>
+                    </a>
+                </td>
+                <td>
+                    <form method="POST" action="./removeauthor/<%=author.id%>">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+    
             <footer>
                 <p>Made by </p><a href="https://github.com/jdogcodey">JdogCodey</a>
                 <p>following </p><a href="https://www.theodinproject.com/">The Odin Project </a><a

@@ -207,4 +207,5 @@ module.exports = {
   addBookToDB,
   addAuthorToDB,
   addGenreToDB,
+  removeBookById,
 };

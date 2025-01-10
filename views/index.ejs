@@ -23,13 +23,16 @@
         <th>No. Of Pages</th>
         <th>Author</th>
         <th>Genre</th>
+        <th>Remove</th>
     <% allBooks.forEach((book) => { %>
         <%const title = book.book_name;%>
         <%const price = book.book_price;%>
         <%const noOfPages = book.no_of_pages;%>
         <%const authorName = book.author_name;%>
         <%const genre = book.genre_name;%>
-            <%- include('./partials/book', { title: title, price: price, noOfPages: noOfPages, authorName: authorName, genre: genre}) %>
+        <%const id= book.book_id;%>
+        <%console.log(id)%>
+            <%- include('./partials/book', { title: title, price: price, noOfPages: noOfPages, authorName: authorName, genre: genre, id: id}) %>
     <%}) %>
     </table>
     <footer>

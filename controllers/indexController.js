@@ -2,6 +2,7 @@ const db = require(`../db/queries`);
 
 async function renderHomepage(req, res) {
   const allBooks = await db.getAllBooksWithGenreAuthor();
+  console.log(allBooks);
   res.render(`../views/index`, { allBooks: allBooks });
 }
 
@@ -53,6 +54,14 @@ async function addGenre(req, res) {
   res.render("../views/genres", { genres: genres });
 }
 
+async function removeBook(req, res) {
+  const id = req.params.id;
+  console.log(id);
+  await db.removeBookById(id);
+  const allBooks = await db.getAllBooksWithGenreAuthor();
+  res.render("../views/index", { allBooks: allBooks });
+}
+
 // Add controllers for the different routes
 
 module.exports = {
@@ -64,4 +73,5 @@ module.exports = {
   addBook,
   addAuthor,
   addGenre,
+  removeBook,
 };
